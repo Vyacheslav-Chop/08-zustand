@@ -47,6 +47,9 @@ export default function NoteForm() {
     try {
       const schema = Yup.reach(FormSchema, name) as Yup.StringSchema;
       await schema.validate(value);
+
+      const isFormValid = await FormSchema.isValid({ ...draft, [name]: value });
+      setIsValid(isFormValid);
       setErrors((prev) => ({ ...prev, [name]: "" }));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
@@ -72,6 +75,7 @@ export default function NoteForm() {
     Partial<Record<keyof FormValues, string>>
   >({});
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const handleSubmit = async (formData: FormData) => {
     setIsSubmiting(true);
@@ -83,6 +87,7 @@ export default function NoteForm() {
 
     try {
       validatedValue = await FormSchema.validate(values, { abortEarly: false });
+      setIsValid(true);
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const newError: Partial<Record<keyof FormValues, string>> = {};
@@ -93,6 +98,7 @@ export default function NoteForm() {
           }
         });
         setErrors(newError);
+        setIsValid(false);
       }
 
       return;
@@ -162,7 +168,7 @@ export default function NoteForm() {
         <button
           type="submit"
           className={css.submitButton}
-          disabled={isSubmiting}
+          disabled={!isValid || isSubmiting}
         >
           Create note
         </button>
