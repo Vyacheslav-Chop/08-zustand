@@ -8,10 +8,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Not Found (404)",
     description: "404 Not Found — The requested page could not be found.",
-    url: "https://08-zustand-seven.vercel.app/",
+    url: "https://08-zustand-seven.vercel.app/not-found",
     images: [
       {
-        url: "/not_found.png",
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
         width: 1200,
         height: 630,
         alt: "Not Found",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Not Found (404)",
     description: "404 Not Found — The requested page could not be found.",
-    images: ["/not_found.png"],
+    images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
   },
 };
 

@@ -1,4 +1,4 @@
-import { Note, Tag } from "@/types/note";
+import { NewNote, Note} from "@/types/note";
 import axios from "axios";
 
 const myToken = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
@@ -24,12 +24,6 @@ export async function fetchNotes(
     },
   });
   return res.data;
-}
-
-interface NewNote {
-  title: string;
-  content?: string;
-  tag: Tag;
 }
 
 export async function createNote(newNote: NewNote): Promise<Note> {

@@ -39,9 +39,11 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
-      
-    }
+      card: "summary_large_image",
+      title: `Notes: ${tag}`,
+      description: descriptionTag,
+      images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
+    },
   };
 }
 
