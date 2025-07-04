@@ -29,6 +29,11 @@ const FormSchema = Yup.object({
 type FormValues = Yup.InferType<typeof FormSchema>;
 
 export default function NoteForm() {
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof FormValues, string>>
+  >({});
+  const [isSubmiting, setIsSubmiting] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const queryClient = useQueryClient();
 
   const router = useRouter();
@@ -70,12 +75,6 @@ export default function NoteForm() {
       toast.error("Something went wrong. Please try again.");
     },
   });
-
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof FormValues, string>>
-  >({});
-  const [isSubmiting, setIsSubmiting] = useState(false);
-  const [isValid, setIsValid] = useState(true);
 
   const handleSubmit = async (formData: FormData) => {
     setIsSubmiting(true);
